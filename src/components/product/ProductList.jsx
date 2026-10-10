@@ -15,6 +15,9 @@ const SORT_OPTIONS = [
   { value: 'name-asc', label: 'Name, A to Z' },
 ];
 
+const normalizeCategory = (s) =>
+  String(s || '').toLowerCase().trim().replace(/\s+/g, ' ');
+
 const getPrice = (product) => {
   if (product.priceVariants && product.priceVariants.length > 0) {
     return product.priceVariants.reduce(
@@ -48,9 +51,9 @@ export default function ProductList({ initialProducts = [], selectedCategory = '
     let result = [...initialProducts];
 
     if (filters.category) {
-      const wanted = filters.category.toLowerCase();
+      const wanted = normalizeCategory(filters.category);
       result = result.filter(
-        (product) => product.category && product.category.toLowerCase() === wanted
+        (product) => product.category && normalizeCategory(product.category) === wanted
       );
     }
 

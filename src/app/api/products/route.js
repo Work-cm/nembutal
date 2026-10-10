@@ -20,7 +20,8 @@ export async function GET(request) {
     let query = {};
     
     if (category) {
-      query.category = category;
+      const escaped = category.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      query.category = { $regex: new RegExp('^' + escaped + '$', 'i') };
     }
     
     if (search) {

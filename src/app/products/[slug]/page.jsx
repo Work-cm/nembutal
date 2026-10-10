@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { FaArrowLeft, FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '@/components/cart/CartProvider';
 import ProtectedImage from '@/components/common/ProtectedImage';
+import { Stars } from '@/components/home/ProductCard';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -181,6 +182,14 @@ export default function ProductDetailPage() {
               </span>
             </div>
             <h1 className="text-3xl md:text-4xl font-serif font-medium text-ink mb-2">{product.name}</h1>
+            {product.numReviews > 0 && (
+              <div className="mb-4 flex items-center gap-3">
+                <Stars rating={product.rating || 0} />
+                <span className="text-sm text-ink-faint">
+                  {product.rating?.toFixed(1)} ({product.numReviews} {product.numReviews === 1 ? 'review' : 'reviews'})
+                </span>
+              </div>
+            )}
             {product.casNumber && (
               <p className="text-sm text-ink-muted mb-4">CAS: {product.casNumber}</p>
             )}
@@ -293,6 +302,48 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </div>
+
+        {/* Customer Reviews */}
+        {product.reviews && product.reviews.length > 0 && (
+          <div className="mt-16 border-t border-ink/10 pt-12">
+            <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+              <h2 className="text-2xl font-serif font-medium text-ink">Customer Reviews</h2>
+              <div className="flex items-center gap-3">
+                <Stars rating={product.rating || 0} />
+                <span className="text-sm text-ink-muted">
+                  {product.rating?.toFixed(1)} out of 5 — {product.numReviews} {product.numReviews === 1 ? 'review' : 'reviews'}
+                </span>
+              </div>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {[...product.reviews]
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .map((review) => (
+                  <div
+                    key={review._id || review.createdAt}
+                    className="rounded-editorial border border-ink/10 bg-bone-light p-6"
+                  >
+                    <div className="mb-3 flex items-center justify-between">
+                      <Stars rating={review.rating} />
+                      <span className="text-[11px] text-ink-faint">
+                        {new Date(review.createdAt).toLocaleDateString('en-GB', {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        })}
+                      </span>
+                    </div>
+                    <p className="text-sm leading-relaxed text-ink-soft">{review.comment}</p>
+                    <div className="mt-4 flex items-center gap-2">
+                      <span className="text-sm font-medium text-ink">{review.name}</span>
+                      <span className="text-[11px] text-amber-dark">Verified purchase</span>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
 
       </div>
     </div>
