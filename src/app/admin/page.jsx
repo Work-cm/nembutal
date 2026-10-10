@@ -108,7 +108,7 @@ export default function AdminDashboard() {
         <StatCard
           icon={FaDollarSign}
           label="Revenue"
-          value={`$${typeof stats.totalRevenue === 'number' ? stats.totalRevenue.toFixed(2) : '0.00'}`}
+          value={`€${typeof stats.totalRevenue === 'number' ? stats.totalRevenue.toFixed(2) : '0.00'}`}
           linkText="Total sales"
         />
       </div>
@@ -144,7 +144,7 @@ export default function AdminDashboard() {
                     <td className="py-3 pr-4 text-ink-soft font-medium">#{order._id.slice(-6)}</td>
                     <td className="py-3 pr-4 text-ink-soft">{order.user?.name || 'Guest User'}</td>
                     <td className="py-3 pr-4 text-ink-muted">{new Date(order.createdAt || Date.now()).toLocaleDateString()}</td>
-                    <td className="py-3 pr-4 text-ink-soft font-medium">${(order.total || order.totalPrice || 0).toFixed(2)}</td>
+                    <td className="py-3 pr-4 text-ink-soft font-medium">€{(order.total || order.totalPrice || 0).toFixed(2)}</td>
                     <td className="py-3 pr-4">
                       <span className={`px-2.5 py-1 rounded-full text-xs ${statusBadge(order.status)}`}>
                         {(order.status || 'pending').charAt(0).toUpperCase() + (order.status || 'pending').slice(1)}

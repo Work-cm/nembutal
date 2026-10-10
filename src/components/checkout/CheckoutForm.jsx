@@ -160,7 +160,7 @@ export default function CheckoutForm({ orderDetails }) {
           ) : (
             <>
               <FaLock className="mr-2" />
-              Pay ${orderDetails.total.toFixed(2)}
+              Pay €{orderDetails.total.toFixed(2)}
             </>
           )}
         </button>

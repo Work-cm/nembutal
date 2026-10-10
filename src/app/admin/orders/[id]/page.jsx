@@ -381,10 +381,10 @@ function OrderDetailContent({ params: paramsPromise }) {
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 text-ink-muted">${item.price?.toFixed(2) || '0.00'}</td>
+                      <td className="py-4 text-ink-muted">€{item.price?.toFixed(2) || '0.00'}</td>
                       <td className="py-4 text-ink-muted">{item.quantity}</td>
                       <td className="py-4 text-right font-medium text-ink-soft">
-                        ${((item.price || 0) * item.quantity).toFixed(2)}
+                        €{((item.price || 0) * item.quantity).toFixed(2)}
                       </td>
                     </tr>
                   ))}
@@ -392,19 +392,19 @@ function OrderDetailContent({ params: paramsPromise }) {
                 <tfoot className="text-sm">
                   <tr>
                     <td colSpan="3" className="pt-4 text-right font-medium text-ink-muted">Subtotal:</td>
-                    <td className="pt-4 text-right font-medium text-ink-soft">${order.itemsPrice?.toFixed(2) || '0.00'}</td>
+                    <td className="pt-4 text-right font-medium text-ink-soft">€{order.itemsPrice?.toFixed(2) || '0.00'}</td>
                   </tr>
                   <tr>
                     <td colSpan="3" className="pt-2 text-right font-medium text-ink-muted">Shipping:</td>
-                    <td className="pt-2 text-right font-medium text-ink-soft">${order.shippingPrice?.toFixed(2) || '0.00'}</td>
+                    <td className="pt-2 text-right font-medium text-ink-soft">€{order.shippingPrice?.toFixed(2) || '0.00'}</td>
                   </tr>
                   <tr>
                     <td colSpan="3" className="pt-2 text-right font-medium text-ink-muted">Tax:</td>
-                    <td className="pt-2 text-right font-medium text-ink-soft">${order.taxPrice?.toFixed(2) || '0.00'}</td>
+                    <td className="pt-2 text-right font-medium text-ink-soft">€{order.taxPrice?.toFixed(2) || '0.00'}</td>
                   </tr>
                   <tr>
                     <td colSpan="3" className="pt-4 text-right font-serif text-lg font-medium text-ink">Total:</td>
-                    <td className="pt-4 text-right font-serif text-lg font-medium text-ink">${order.totalPrice?.toFixed(2) || '0.00'}</td>
+                    <td className="pt-4 text-right font-serif text-lg font-medium text-ink">€{order.totalPrice?.toFixed(2) || '0.00'}</td>
                   </tr>
                 </tfoot>
               </table>

@@ -1,16 +1,16 @@
 /**
  * Dynamic Sitemap for SEO optimization
- * Covers the storefront, the three category listings
- * (anabolic steroids, psychedelic drugs, research chemicals)
+ * Covers the storefront, all category listings
  * and every product detail page.
  */
 
 import dbConnect from '@/lib/utils/db';
 import Product from '@/models/Product';
 import { PRODUCT_CATEGORIES, categoryHref } from '@/lib/constants/categories';
+import { SITE_URL } from '@/lib/constants/site';
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://chemicalssite.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || SITE_URL;
   
   // Static pages
   const staticPages = [

@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --bone: #f7f3ec;
-  --bone-light: #fcfaf6;
-  --bone-dark: #efe8dd;
-  --ink: #14110f;
-  --ink-muted: #6b6257;
-  --accent: #b4762b;
+  --bone: #ffffff;
+  --bone-light: #f5f9fc;
+  --bone-dark: #e3ecf4;
+  --ink: #0b1d33;
+  --ink-muted: #546b86;
+  --accent: #0e9ba8;
 }
 
 html {
@@ -27,9 +27,9 @@ body {
 }
 
 h1, h2, h3, h4, blockquote {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-family: var(--font-sora), var(--font-inter), ui-sans-serif, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 ::selection {
@@ -48,7 +48,7 @@ h1, h2, h3, h4, blockquote {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c9bda9;
+  background: #b7c9da;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -83,14 +83,15 @@ img, picture {
   animation: spin-slow 20s linear infinite;
 }
 
-/* Editorial paper grain overlay */
+/* Subtle clinical dot texture */
 .paper-grain::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  background-image: radial-gradient(rgba(11, 29, 51, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
 /* Animated underline for editorial links */
@@ -180,19 +181,19 @@ a:not([class]) {
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center bg-ink text-bone-light text-[13px] font-medium tracking-[0.14em] uppercase py-3 px-7 rounded-editorial transition-all duration-500 ease-editorial hover:bg-amber-dark;
+    @apply inline-flex items-center justify-center bg-amber text-bone text-[13px] font-semibold tracking-[0.14em] uppercase py-3 px-7 rounded-editorial transition-all duration-500 ease-editorial hover:bg-amber-dark shadow-editorial;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center border border-ink/25 text-ink text-[13px] font-medium tracking-[0.14em] uppercase py-3 px-7 rounded-editorial transition-all duration-500 ease-editorial hover:border-ink hover:bg-ink hover:text-bone-light;
+    @apply inline-flex items-center justify-center border-2 border-amber/60 text-amber-dark text-[13px] font-semibold tracking-[0.14em] uppercase py-3 px-7 rounded-editorial transition-all duration-500 ease-editorial hover:border-amber-dark hover:bg-amber-wash;
   }
 
   .card {
-    @apply bg-bone-light border border-ink/10 rounded-editorial overflow-hidden transition-all duration-500 ease-editorial hover:border-ink/25 hover:shadow-editorial;
+    @apply bg-bone border border-ink/10 rounded-editorial overflow-hidden transition-all duration-500 ease-editorial hover:border-amber/40 hover:shadow-editorial;
   }
 
   .eyebrow {
-    @apply text-[11px] font-medium uppercase tracking-editorial text-ink-muted;
+    @apply text-[11px] font-semibold uppercase tracking-editorial text-amber-dark;
   }
 
   .rule {

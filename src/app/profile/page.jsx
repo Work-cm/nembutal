@@ -333,7 +333,7 @@ export default function ProfilePage() {
                               </div>
                               <div>
                                 <p className="text-gray-400 text-sm">Total</p>
-                                <p className="text-white font-semibold">${order.totalPrice.toFixed(2)}</p>
+                                <p className="text-white font-semibold">€{order.totalPrice.toFixed(2)}</p>
                               </div>
                               <div>
                                 <p className="text-gray-400 text-sm">Status</p>
@@ -360,7 +360,7 @@ export default function ProfilePage() {
                                       <span className="text-gray-400 mx-2">×</span>
                                       <span className="text-white">{item.quantity}</span>
                                     </div>
-                                    <span className="text-white">${(item.price * item.quantity).toFixed(2)}</span>
+                                    <span className="text-white">€{(item.price * item.quantity).toFixed(2)}</span>
                                   </div>
                                 ))}
                               </div>

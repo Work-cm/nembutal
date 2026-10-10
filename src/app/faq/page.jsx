@@ -3,17 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp, FaSearch } from 'react-icons/fa';
+import { SITE_WHATSAPP, SITE_TELEGRAM } from '@/lib/constants/site';
 
 function renderAnswerWithLinks(text) {
-  const emailRegex = /([\w.-]+@[\w.-]+\.\w+)/g;
-  const parts = text.split(emailRegex);
-  return parts.map((part, i) =>
-    emailRegex.test(part) ? (
-      <a key={i} href={`mailto:${part}`} className="text-amber-dark hover:text-ink link-underline">{part}</a>
-    ) : (
-      part
-    )
-  );
+  return text;
 }
 
 export default function FAQPage() {
@@ -33,40 +26,40 @@ export default function FAQPage() {
     // Ordering & Payment
     {
       category: 'ordering',
-      question: 'What payment methods do you accept?',
-      answer: 'We currently accept Bitcoin only. After you submit your order request, we reply with the wallet address and exact amount in BTC. Once your payment is confirmed, your order is prepared for shipping.'
+      question: 'Do I need a prescription to order?',
+      answer: 'No. We connect you with top-tier pharmaceutical options without the need for a traditional script. No medical records are required at checkout.'
     },
     {
       category: 'ordering',
-      question: 'How do I pay with Bitcoin?',
-      answer: 'Add products to your cart, proceed to checkout, and send the order request. Our team will email you a Bitcoin wallet address and the exact amount to send. After the required confirmations, your order ships.'
+      question: 'What payment methods do you accept?',
+      answer: 'We provide secure payment options designed to protect your personal and payment information. All transactions are handled through trusted payment channels. Available methods are shown at checkout.'
     },
     {
       category: 'ordering',
       question: 'Do I need an account to place an order?',
-      answer: 'No. You can check out as a guest. Just fill in your shipping details and send the order request from the checkout page.'
+      answer: 'No. You can check out as a guest. Just fill in your shipping details and complete your order from the checkout page.'
     },
     {
       category: 'ordering',
       question: 'Do you offer bulk discounts?',
-      answer: 'Yes. Contact us at info@chemicalssite.com, on WhatsApp, or on Telegram with the products and quantities you need and we will provide a custom quote.'
+      answer: 'Yes. Contact us on WhatsApp or Telegram with the products and quantities you need and we will provide a custom quote.'
     },
 
     // Shipping & Delivery
     {
       category: 'shipping',
       question: 'How much is shipping?',
-      answer: 'Shipping is a flat €50 per order. The fee is added automatically at checkout. There are no additional taxes or hidden charges.'
+      answer: 'Shipping cost depends on your location and the selected shipping method, and is shown at checkout before you pay. There are no hidden charges.'
     },
     {
       category: 'shipping',
       question: 'How long does shipping take?',
-      answer: 'Orders are processed within 24–48 hours after payment confirmation. Delivery times vary by destination: Europe typically 3–7 business days, international 7–21 business days.'
+      answer: 'Orders are processed within 24 hours after payment confirmation. Delivery times vary by destination: USA typically 2–5 business days, Europe 3–7 business days.'
     },
     {
       category: 'shipping',
-      question: 'Do you ship internationally?',
-      answer: 'Yes, we ship to most countries worldwide. You are responsible for knowing your local import regulations.'
+      question: 'Where do you ship?',
+      answer: 'We deliver throughout the USA and Europe. You are responsible for knowing your local import regulations.'
     },
     {
       category: 'shipping',
@@ -76,41 +69,41 @@ export default function FAQPage() {
     {
       category: 'shipping',
       question: 'How can I track my order?',
-      answer: 'Once your order ships, we email you a tracking number and carrier link so you can follow the package in real time.'
+      answer: 'Once your order ships, we send you a tracking number and carrier link so you can follow the package in real time.'
     },
 
     // Products & Quality
     {
       category: 'products',
-      question: 'Are your products tested?',
-      answer: 'Yes. Every batch is quality-controlled and supplied with documented identity and purity data. Certificates of Analysis are available on request.'
+      question: 'Are your products authentic?',
+      answer: 'Yes. We source our inventory from reputable, authorized pharmaceutical suppliers and manufacturers, with attention to quality, authenticity, packaging and expiration dates.'
     },
     {
       category: 'products',
-      question: 'What purity level are your products?',
-      answer: 'Our products are typically 98% or higher purity, verified by independent analytical testing.'
+      question: 'What categories do you carry?',
+      answer: 'Codeine, painkillers, benzodiazepines, diet pills, Foundayo weight loss tablets, Alluvi, Nembutal, men\'s sexual health, research chemicals and steroids.'
     },
     {
       category: 'products',
-      question: 'Are your products for human consumption?',
-      answer: 'No. All products are sold as reference materials for laboratory and analytical research only. They are not intended for human or veterinary use.'
+      question: 'Are products available in different strengths?',
+      answer: 'Many products are available in various strengths and pack sizes. Select the option you need on the product page before adding it to your cart.'
     },
     {
       category: 'products',
       question: 'How should I store the products?',
-      answer: 'Store in a cool, dry place away from light and moisture. Keep containers sealed until use and follow standard laboratory safety protocols.'
+      answer: 'Store in a cool, dry place away from light and moisture, out of reach of children. Keep packaging sealed until use and follow the instructions supplied with the product.'
     },
 
     // Contact & Support
     {
       category: 'contact',
       question: 'How can I contact you?',
-      answer: 'You can reach us by email at info@chemicalssite.com, by WhatsApp, or by Telegram using the floating icons on the bottom-left of every page. We usually respond within 24 hours.'
+      answer: 'You can reach us on WhatsApp or Telegram using the floating icons on every page. We usually respond within a few hours.'
     },
     {
       category: 'contact',
       question: 'Can I order by phone?',
-      answer: 'We do not take phone orders. Please use the website checkout or contact us by email, WhatsApp, or Telegram for assistance.'
+      answer: 'We do not take phone orders. Please use the website checkout or contact us on WhatsApp or Telegram for assistance.'
     },
   ];
 
@@ -134,7 +127,7 @@ export default function FAQPage() {
           <p className="eyebrow mb-3">Support</p>
           <h1 className="text-4xl md:text-5xl font-serif font-medium text-ink mb-4">Frequently Asked Questions</h1>
           <p className="text-ink-muted text-lg max-w-2xl mx-auto">
-            Quick answers about Bitcoin payments, shipping, products, and getting in touch.
+            Quick answers about ordering, payment, shipping, products and getting in touch.
           </p>
         </header>
 
@@ -219,14 +212,24 @@ export default function FAQPage() {
         <div className="mt-12 bg-ink text-bone-light rounded-editorial p-8 text-center">
           <h2 className="text-2xl font-serif font-medium mb-4">Still Have Questions?</h2>
           <p className="text-bone-deep mb-6 max-w-xl mx-auto">
-            Can&apos;t find the answer you&apos;re looking for? Reach out by email, WhatsApp, or Telegram and we&apos;ll get back to you quickly.
+            Can&apos;t find the answer you&apos;re looking for? Reach out on WhatsApp or Telegram and we&apos;ll get back to you quickly.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="mailto:info@chemicalssite.com"
+              href={SITE_WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary"
             >
-              Email Support
+              WhatsApp Support
+            </a>
+            <a
+              href={SITE_TELEGRAM}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              Telegram Support
             </a>
             <Link
               href="/products"

@@ -218,7 +218,7 @@ export default function AdminOrders() {
                         <td className="p-4 text-ink-muted">
                           {new Date(order.createdAt).toLocaleDateString()}
                         </td>
-                        <td className="p-4 font-medium text-ink-soft">${order.totalPrice.toFixed(2)}</td>
+                        <td className="p-4 font-medium text-ink-soft">€{order.totalPrice.toFixed(2)}</td>
                         <td className="p-4">
                           <div className="flex items-center gap-2">
                             <span className={`px-2.5 py-1 rounded-full text-xs ${getStatusBadgeClass(order.status)}`}>

@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { FaShippingFast, FaBox, FaGlobeAmericas, FaClock, FaShieldAlt, FaCheckCircle } from 'react-icons/fa';
+import { SITE_NAME, SITE_URL, SITE_WHATSAPP, SITE_TELEGRAM } from '@/lib/constants/site';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://chemicalssite.com'),
-  title: 'Shipping & Delivery Policy | ChemicalsSite',
+  metadataBase: new URL(SITE_URL),
+  title: `Shipping & Delivery Policy | ${SITE_NAME}`,
   description: 'Learn about our shipping methods, delivery times, international shipping, and tracking information.',
   alternates: {
     canonical: '/shipping',
@@ -25,9 +26,9 @@ export default function ShippingPolicyPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {[
-            { icon: FaShippingFast, title: 'Fast Shipping', body: 'Orders processed within 24-48 hours' },
+            { icon: FaShippingFast, title: 'Fast Shipping', body: 'Orders processed within 24 hours' },
             { icon: FaShieldAlt, title: 'Discreet Packaging', body: 'Unmarked, secure packaging' },
-            { icon: FaGlobeAmericas, title: 'Worldwide Delivery', body: 'We ship to most countries' },
+            { icon: FaGlobeAmericas, title: 'USA & Europe', body: 'Delivery across the USA and Europe' },
           ].map((card) => (
             <div key={card.title} className="bg-bone-light border border-ink/10 rounded-editorial p-6 text-center shadow-editorial">
               <card.icon className="text-3xl text-amber mx-auto mb-3" />
@@ -65,8 +66,8 @@ export default function ShippingPolicyPage() {
             <h3 className="text-xl font-semibold text-amber-dark mb-3">2.1 Domestic Shipping (Within Country)</h3>
             <div className="space-y-4 mb-6">
               {[
-                { name: 'Standard Shipping', price: '€15.00', time: '3-5 business days', note: 'Reliable and cost-effective option for most orders' },
-                { name: 'Express Shipping', price: '€35.00', time: '1-2 business days', note: 'Priority handling and expedited delivery' },
+                { name: 'Standard Shipping', price: '$25.00', time: '2-5 business days', note: 'Reliable and cost-effective option for most orders' },
+                { name: 'Express Shipping', price: '$45.00', time: '1-3 business days', note: 'Priority handling and expedited delivery' },
               ].map((method) => (
                 <div key={method.name} className="bg-bone border border-ink/10 rounded-editorial p-4">
                   <div className="flex justify-between items-center mb-2">
@@ -83,16 +84,16 @@ export default function ShippingPolicyPage() {
                   <FaCheckCircle className="text-green-700 mr-2" />
                   <h4 className="text-ink font-semibold text-sm">FREE Standard Shipping</h4>
                 </div>
-                <p className="text-sm text-ink-muted">On orders over €100.00</p>
+                <p className="text-sm text-ink-muted">On orders over $150.00</p>
               </div>
             </div>
 
             <h3 className="text-xl font-semibold text-amber-dark mb-3">2.2 International Shipping</h3>
             <div className="space-y-4">
               {[
-                { name: 'Europe (EU)', price: '€25.00', time: '5-10 business days', note: 'Standard international shipping within European Union' },
-                { name: 'North America', price: '€45.00', time: '7-14 business days', note: 'USA, Canada, and Mexico' },
-                { name: 'Rest of World', price: '€60.00', time: '10-21 business days', note: 'Australia, Asia, South America, and other regions' },
+                { name: 'Europe (EU)', price: '$30.00', time: '3-7 business days', note: 'Standard shipping within the European Union' },
+                { name: 'North America', price: '$45.00', time: '5-12 business days', note: 'USA, Canada, and Mexico' },
+                { name: 'Rest of World', price: '$60.00', time: '10-21 business days', note: 'Australia, Asia, South America, and other regions' },
               ].map((method) => (
                 <div key={method.name} className="bg-bone border border-ink/10 rounded-editorial p-4">
                   <div className="flex justify-between items-center mb-2">
@@ -120,7 +121,7 @@ export default function ShippingPolicyPage() {
             <p className="mb-4">We understand the importance of privacy. All orders are shipped with the utmost discretion:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li><strong>Unmarked Packaging:</strong> Plain, neutral boxes or envelopes with no branding</li>
-              <li><strong>Generic Sender Name:</strong> No mention of "ChemicalsSite" on the package</li>
+              <li><strong>Generic Sender Name:</strong> No mention of our store name on the package</li>
               <li><strong>Secure Sealing:</strong> Tamper-evident packaging to ensure product integrity</li>
               <li><strong>Proper Cushioning:</strong> Products are carefully packed to prevent damage</li>
               <li><strong>Confidential Labels:</strong> No product descriptions on shipping labels</li>
@@ -137,7 +138,7 @@ export default function ShippingPolicyPage() {
             <h3 className="text-xl font-semibold text-amber-dark mb-3">4.1 Tracking Information</h3>
             <p className="mb-4">Once your order ships, you will receive:</p>
             <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-              <li><strong>Shipping Confirmation Email:</strong> Sent within 24 hours of shipment</li>
+              <li><strong>Shipping Confirmation:</strong> Sent within 24 hours of shipment</li>
               <li><strong>Tracking Number:</strong> Unique tracking code for your order</li>
               <li><strong>Carrier Information:</strong> Name of the shipping carrier</li>
               <li><strong>Estimated Delivery Date:</strong> Expected delivery timeframe</li>
@@ -147,8 +148,8 @@ export default function ShippingPolicyPage() {
             <div className="bg-bone border border-ink/10 rounded-editorial p-6">
               <ol className="list-decimal list-inside space-y-3">
                 <li className="mb-2">
-                  <strong className="text-ink">Check Your Email:</strong>
-                  <p className="ml-6 mt-1 text-sm text-ink-muted">Look for the shipping confirmation email from <a href="mailto:info@chemicalssite.com" className="text-amber-dark hover:text-ink link-underline">info@chemicalssite.com</a></p>
+                  <strong className="text-ink">Check Your Messages:</strong>
+                  <p className="ml-6 mt-1 text-sm text-ink-muted">Look for the shipping confirmation we send you once your order dispatches</p>
                 </li>
                 <li className="mb-2">
                   <strong className="text-ink">Visit Carrier Website:</strong>
@@ -194,7 +195,7 @@ export default function ShippingPolicyPage() {
                 <strong>Shipping Restrictions:</strong>
               </p>
               <p className="text-sm text-ink-muted">
-                Please contact us at <a href="mailto:info@chemicalssite.com" className="text-amber-dark hover:text-ink link-underline">info@chemicalssite.com</a> to verify if we can ship to your country before placing an order.
+                Please contact us on <a href={SITE_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-amber-dark hover:text-ink link-underline">WhatsApp</a> to verify if we can ship to your country before placing an order.
               </p>
             </div>
 
@@ -217,7 +218,7 @@ export default function ShippingPolicyPage() {
               <li>Look for delivery notices or alternative drop-off locations</li>
               <li>Wait 24 hours as carriers sometimes mark packages delivered early</li>
               <li>Contact the shipping carrier directly with your tracking number</li>
-              <li>If still missing after 48 hours, contact us at <a href="mailto:info@chemicalssite.com" className="text-amber-dark hover:text-ink link-underline">info@chemicalssite.com</a></li>
+              <li>If still missing after 48 hours, contact us on <a href={SITE_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-amber-dark hover:text-ink link-underline">WhatsApp</a></li>
             </ol>
             <p className="text-amber-dark text-sm">
               <strong>Note:</strong> We are not responsible for packages stolen after delivery confirmation. Consider using a secure delivery location.
@@ -228,7 +229,7 @@ export default function ShippingPolicyPage() {
             <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
               <li><strong>Do Not Open:</strong> Keep the package sealed if possible</li>
               <li><strong>Take Photos:</strong> Document all damage to packaging and contents</li>
-              <li><strong>Contact Us Immediately:</strong> Email photos within 24 hours</li>
+              <li><strong>Contact Us Immediately:</strong> Send photos via WhatsApp within 24 hours</li>
               <li><strong>File Carrier Claim:</strong> We will assist with filing a claim</li>
             </ul>
 
@@ -246,7 +247,7 @@ export default function ShippingPolicyPage() {
             <h2 className="text-2xl font-semibold text-ink mb-4">7. Shipping Restrictions</h2>
             <p className="mb-4">Due to the nature of our products, certain restrictions apply:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li><strong>Research Use Only:</strong> Products must be used for legitimate research purposes</li>
+              <li><strong>Responsible Use:</strong> Products must be used responsibly as intended and directed</li>
               <li><strong>Legal Compliance:</strong> You are responsible for ensuring products are legal in your location</li>
               <li><strong>Age Verification:</strong> Must be 18+ to receive shipments</li>
               <li><strong>Signature Required:</strong> Some orders may require signature upon delivery</li>
@@ -259,7 +260,8 @@ export default function ShippingPolicyPage() {
             <h2 className="text-2xl font-semibold text-ink mb-4">8. Shipping Support</h2>
             <p className="mb-4">Need help with your shipment? We're here to assist:</p>
             <div className="bg-bone border border-ink/10 rounded-editorial p-6">
-              <p className="mb-3 text-sm"><strong className="text-ink">Email:</strong> <a href="mailto:info@chemicalssite.com" className="text-amber-dark hover:text-ink link-underline">info@chemicalssite.com</a></p>
+              <p className="mb-3 text-sm"><strong className="text-ink">WhatsApp:</strong> <a href={SITE_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-amber-dark hover:text-ink link-underline">Chat with us</a></p>
+              <p className="mb-3 text-sm"><strong className="text-ink">Telegram:</strong> <a href={SITE_TELEGRAM} target="_blank" rel="noopener noreferrer" className="text-amber-dark hover:text-ink link-underline">Message us</a></p>
               <p className="mb-3 text-sm"><strong className="text-ink">Response Time:</strong> Within 24 hours</p>
               <p className="text-sm text-ink-muted mt-4">
                 Please include your order number and tracking information when contacting us about shipping issues.

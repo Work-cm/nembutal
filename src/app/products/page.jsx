@@ -3,6 +3,7 @@ import ProductList from '@/components/product/ProductList';
 import dbConnect from '@/lib/utils/db';
 import Product from '@/models/Product';
 import { categoryLabel } from '@/lib/constants/categories';
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/constants/site';
 
 // Dynamic Metadata for SEO - handles query parameters
 export async function generateMetadata({ searchParams }) {
@@ -10,28 +11,25 @@ export async function generateMetadata({ searchParams }) {
   const category = params?.category || '';
   
   // Always use /products as canonical to avoid duplicate content from query params
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://chemicalssite.com';
-  
   return {
-    metadataBase: new URL(baseUrl),
+    metadataBase: new URL(SITE_URL),
     title: category 
-      ? `${categoryLabel(category)} | ChemicalsSite`
-      : 'Anabolic Steroids, Psychedelics & Research Chemicals | ChemicalsSite',
+      ? `${categoryLabel(category)} | ${SITE_NAME}`
+      : `Shop Certified Medications & Healthcare Products | ${SITE_NAME}`,
     description: category
-      ? `Browse high-purity ${categoryLabel(category).toLowerCase()} for laboratory research \u2014 every batch assayed and documented.`
-      : 'Browse high-purity anabolic steroids, psychedelic drugs and research chemicals for laboratory research. Testosterone enanthate, trenbolone acetate, oxandrolone, 1P-LSD, 4-ACO-DMT, mescaline HCl, 2C-B, 3-MMC, 2-FDCK and more.',
-    keywords: 'anabolic steroids, psychedelic drugs, research chemicals, testosterone enanthate, trenbolone acetate, nandrolone decanoate, oxandrolone, 1P-LSD, 4-ACO-DMT, mescaline HCl, 2C-B, 3-MMC, 2-FDCK, buy research chemicals online',
+      ? `Shop authentic ${categoryLabel(category).toLowerCase()} online — no prescription needed, fast and discreet shipping.`
+      : SITE_DESCRIPTION,
+    keywords: 'codeine, promethazine codeine, painkillers, adderall, benzodiazepines, diet pills, foundayo, nembutal, phenobarbital, men sex health, research chemicals, steroids, buy medications online, no prescription',
     alternates: {
       canonical: '/products', // Always point to /products to avoid duplicate content from query params
     },
     openGraph: {
       title: category 
-        ? `${categoryLabel(category)} | ChemicalsSite`
-        : 'Anabolic Steroids, Psychedelics & Research Chemicals | ChemicalsSite',
+        ? `${categoryLabel(category)} | ${SITE_NAME}`
+        : `Shop Certified Medications & Healthcare Products | ${SITE_NAME}`,
       description: category
-        ? `Browse high-purity ${categoryLabel(category).toLowerCase()} for laboratory research.`
-        : 'Browse high-purity anabolic steroids, psychedelic drugs and research chemicals for laboratory research.',
-      url: '/products',
+        ? `Shop authentic ${categoryLabel(category).toLowerCase()} online — no prescription needed.`
+        : SITE_DESCRIPTION,
       type: 'website',
     },
   };
@@ -66,7 +64,8 @@ function convertToPlainObject(doc) {
 
 // This function fetches products on the server
 async function getProducts(searchParams) {
-  await dbConnect();
+  const conn = await dbConnect();
+  if (!conn) return [];
   
   // First await the entire searchParams object
   const params = await searchParams;
@@ -154,7 +153,7 @@ export default async function ProductsPage({ searchParams }) {
       <div className="container-editorial">
         <header className="grid grid-cols-1 items-end gap-8 pb-14 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <p className="eyebrow">{selectedCategory ? 'Category' : 'The catalogue'}</p>
+            <p className="eyebrow">{selectedCategory ? 'Category' : 'The shop'}</p>
             <h1 className="mt-5 font-serif text-[clamp(2.4rem,6vw,4.4rem)] leading-[0.98] text-ink">
               {selectedCategory ? categoryLabel(selectedCategory) : 'All products'}
             </h1>
@@ -162,8 +161,8 @@ export default async function ProductsPage({ searchParams }) {
           <div className="lg:col-span-4">
             <p className="max-w-sm text-[15px] leading-[1.75] text-ink-muted">
               {selectedCategory
-                ? `A curated selection of ${categoryLabel(selectedCategory).toLowerCase()}, each batch assayed for identity and purity before it is listed.`
-                : 'Anabolic steroids, psychedelic drugs and research chemicals \u2014 each batch assayed, documented and dispatched discreetly.'}
+                ? `Authentic ${categoryLabel(selectedCategory).toLowerCase()} sourced from verified suppliers — no prescription needed, shipped discreetly.`
+                : 'Pain relief, codeine, weight management, men\'s health and more — no prescription needed, shipped discreetly across the USA and Europe.'}
             </p>
           </div>
         </header>

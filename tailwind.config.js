@@ -8,55 +8,55 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Editorial Minimal palette
+        // Clean pharmacy palette
         bone: {
-          DEFAULT: '#F7F3EC', // page canvas
-          light: '#FCFAF6',
-          dark: '#EFE8DD',
-          deep: '#E4DACB',
+          DEFAULT: '#FFFFFF', // page canvas
+          light: '#F5F9FC',
+          dark: '#E3ECF4',
+          deep: '#C9D9E6',
         },
         ink: {
-          DEFAULT: '#14110F', // primary text
-          soft: '#3B3630',
-          muted: '#6B6257',
-          faint: '#9A9084',
+          DEFAULT: '#0B1D33', // primary text (deep navy)
+          soft: '#27405C',
+          muted: '#546B86',
+          faint: '#93A5BC',
         },
         amber: {
-          DEFAULT: '#B4762B', // accent
-          dark: '#8E5A1C',
-          light: '#D9A24B',
-          wash: '#F3E5CE',
+          DEFAULT: '#0E9BA8', // teal accent
+          dark: '#0A7E88',
+          light: '#35B8C4',
+          wash: '#DDF3F5',
         },
         primary: {
-          DEFAULT: '#B4762B',
-          dark: '#8E5A1C',
-          light: '#D9A24B',
+          DEFAULT: '#0E9BA8',
+          dark: '#0A7E88',
+          light: '#35B8C4',
         },
         secondary: {
-          DEFAULT: '#14110F',
-          dark: '#000000',
-          light: '#3B3630',
+          DEFAULT: '#0B1D33',
+          dark: '#061120',
+          light: '#27405C',
         },
         dark: {
-          DEFAULT: '#14110F',
-          lighter: '#FCFAF6',
-          darker: '#000000',
+          DEFAULT: '#0B1D33',
+          lighter: '#F5F9FC',
+          darker: '#061120',
         },
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-fraunces)', 'Georgia', 'Cambria', 'serif'],
-        display: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        serif: ['var(--font-sora)', 'var(--font-inter)', 'ui-sans-serif', 'sans-serif'],
+        display: ['var(--font-sora)', 'var(--font-inter)', 'ui-sans-serif', 'sans-serif'],
       },
       letterSpacing: {
         editorial: '0.22em',
       },
       borderRadius: {
-        editorial: '2px',
+        editorial: '10px',
       },
       boxShadow: {
-        editorial: '0 1px 2px rgba(20, 17, 15, 0.04), 0 18px 40px -28px rgba(20, 17, 15, 0.28)',
-        'editorial-lg': '0 2px 4px rgba(20, 17, 15, 0.05), 0 40px 80px -40px rgba(20, 17, 15, 0.35)',
+        editorial: '0 1px 2px rgba(11, 29, 51, 0.05), 0 18px 40px -28px rgba(11, 29, 51, 0.25)',
+        'editorial-lg': '0 2px 4px rgba(11, 29, 51, 0.06), 0 40px 80px -40px rgba(11, 29, 51, 0.32)',
       },
       transitionTimingFunction: {
         editorial: 'cubic-bezier(0.22, 1, 0.36, 1)',

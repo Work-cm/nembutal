@@ -194,7 +194,7 @@ export default function AdminProducts() {
                         </td>
                         <td className="p-4 font-medium text-ink-soft">{product.name}</td>
                         <td className="p-4 text-ink-muted capitalize">{product.category}</td>
-                        <td className="p-4 text-ink-soft font-medium">${product.price.toFixed(2)}</td>
+                        <td className="p-4 text-ink-soft font-medium">€{product.price.toFixed(2)}</td>
                         <td className="p-4">
                           <span className={`px-2.5 py-1 rounded-full text-xs ${stockBadge(product.countInStock)}`}>
                             {product.countInStock > 0 ? `${product.countInStock} in stock` : 'Out of stock'}

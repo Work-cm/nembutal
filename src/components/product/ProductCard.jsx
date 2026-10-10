@@ -95,7 +95,7 @@ export default function ProductCard({ product, index = 0 }) {
         <div className="mt-5 flex items-end justify-between border-t border-ink/10 pt-4">
           <div>
             <span className="font-serif text-[20px] text-ink">
-              &euro;{Number(lowestPrice).toFixed(2)}
+              €{Number(lowestPrice).toFixed(2)}
             </span>
             {product.priceVariants && product.priceVariants.length > 1 && (
               <span className="ml-1.5 text-[11px] uppercase tracking-editorial text-ink-faint">

@@ -1,4 +1,4 @@
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
@@ -13,6 +13,7 @@ import WhatsAppButton from "@/components/common/WhatsAppButton";
 // Providers
 import AuthProvider from "@/components/auth/AuthProvider";
 import CartProvider from "@/components/cart/CartProvider";
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from "@/lib/constants/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,81 +24,50 @@ const inter = Inter({
   fallback: ['system-ui', 'arial'],
 });
 
-const fraunces = Fraunces({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-sora",
   display: 'swap',
   preload: true,
-  fallback: ['Georgia', 'serif'],
+  fallback: ['ui-sans-serif', 'system-ui', 'sans-serif'],
 });
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://chemicalssite.com'),
-  title: "ChemicalsSite | Anabolic Steroids, Psychedelics & Research Chemicals",
-  description: "High-purity anabolic steroids, psychedelic drugs and research chemicals. Dianabol, Winstrol, Anadrol-50, 1P-LSD, DMT, MDMA, Ketamine, Golden Teacher Mushrooms, 4-MMC, 3-MMC, 2C-B, Crystal Meth, A-PVP and more \u2014 every batch assayed and discreetly dispatched.",
-  other: {
-    'theme-color': '#F7F3EC',
-  },
+  metadataBase: new URL(SITE_URL),
+  title: `${SITE_NAME} | Buy Certified Medications & Healthcare Products Online`,
+  description: SITE_DESCRIPTION,
   keywords: [
-    "anabolic steroids",
-    "psychedelic drugs",
+    "buy medications online",
+    "online pharmacy no prescription",
+    "buy codeine online",
+    "promethazine with codeine",
+    "codeine linctus",
+    "painkillers online",
+    "Adderall",
+    "Oxycodone",
+    "Tramadol",
+    "benzodiazepines",
+    "Rivotril clonazepam",
+    "Clonazolam",
+    "diet pills",
+    "Adipex phentermine",
+    "Foundayo GLP-1 tablets",
+    "Alluvi retatrutide",
+    "Wegovy",
+    "Nembutal",
+    "Phenobarbital",
+    "Potassium cyanide",
+    "men sex health",
+    "Anadrol oxymetholone",
     "research chemicals",
-    "buy anabolic steroids online",
-    "buy psychedelics online",
-    "buy research chemicals online",
-    "1-TEST CYP 200",
-    "AICAR",
-    "Alphabolin",
-    "Anadrol-50",
-    "Anapolon",
-    "Anastrozole",
-    "Astralean",
-    "Dianabol",
-    "Fentanyl",
-    "Induject-250",
-    "Scopolamine Hydrobromide",
-    "Winstrol",
     "1P-LSD",
-    "Ayahuasca",
-    "DMT",
-    "DMT Changa",
-    "Golden Teacher Mushroom",
-    "Ibogaine",
-    "Ketamine",
-    "Kratom Powder",
-    "Liberty Cap Mushrooms",
-    "Liquid LSD",
-    "MDMA",
-    "Mescaline Powder",
-    "Morning Glory Seeds",
-    "Penis Envy Mushrooms",
-    "Psilocybe Cubensis",
-    "Iboga Rootbark",
-    "4-MMC",
-    "3-MMC",
-    "3-CMC",
-    "4-CMC",
-    "A-PVP",
-    "Crystal Meth",
-    "a-PiHP",
-    "2-FDCK",
-    "U-47700",
-    "MDPV",
-    "2C-B",
-    "2C-C",
-    "2C-E",
-    "2C-H",
-    "2C-I",
-    "2C-T-2",
-    "25B-NBF",
-    "25I-NBMD",
-    "4-AcO-DMT",
-    "3-FMC",
-    "3-FPM",
-    "5F-SGT-151",
-    "laboratory chemicals",
-    "high purity compounds",
+    "1CP-LSD",
+    "4-HO-MET",
+    "discreet shipping",
   ],
+  other: {
+    'theme-color': '#FFFFFF',
+  },
   robots: {
     index: true,
     follow: true,
@@ -113,14 +83,14 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: '/',
-    siteName: 'ChemicalsSite',
-    title: 'ChemicalsSite | Anabolic Steroids, Psychedelics & Research Chemicals',
-    description: 'Dianabol, Winstrol, Anadrol-50, 1P-LSD, DMT, MDMA, Ketamine, Golden Teacher Mushrooms, 4-MMC, 3-MMC, 2C-B, Crystal Meth, A-PVP and more \u2014 assayed and discreetly dispatched.',
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | Buy Certified Medications & Healthcare Products Online`,
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ChemicalsSite | Anabolic Steroids, Psychedelics & Research Chemicals',
-    description: 'Dianabol, Winstrol, Anadrol-50, 1P-LSD, DMT, MDMA, Ketamine, Golden Teacher Mushrooms, 4-MMC, 3-MMC, 2C-B, Crystal Meth, A-PVP and more \u2014 assayed and discreetly dispatched.',
+    title: `${SITE_NAME} | Buy Certified Medications & Healthcare Products Online`,
+    description: SITE_DESCRIPTION,
   },
   verification: {
     // Add your verification codes when ready
@@ -138,7 +108,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
       <head>
         {/* Preconnect to external domains for better performance */}
         <link rel="preconnect" href="https://analytics.ahrefs.com" />
@@ -160,9 +130,9 @@ export default function RootLayout({ children }) {
               position="top-center"
               toastOptions={{
                 style: {
-                  background: '#14110F',
-                  color: '#F7F3EC',
-                  borderRadius: '2px',
+                  background: '#0B1D33',
+                  color: '#FFFFFF',
+                  borderRadius: '10px',
                   fontSize: '14px',
                   letterSpacing: '0.01em',
                 },

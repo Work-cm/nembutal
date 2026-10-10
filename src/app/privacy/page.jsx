@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import { SITE_NAME, SITE_URL, SITE_WHATSAPP, SITE_TELEGRAM } from '@/lib/constants/site';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://chemicalssite.com'),
-  title: 'Privacy Policy | ChemicalsSite',
-  description: 'Privacy Policy for ChemicalsSite - Learn how we collect, use, and protect your personal information.',
+  metadataBase: new URL(SITE_URL),
+  title: `Privacy Policy | ${SITE_NAME}`,
+  description: `Privacy Policy for ${SITE_NAME} - Learn how we collect, use, and protect your personal information.`,
   alternates: {
     canonical: '/privacy',
   },
@@ -27,10 +28,10 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-ink mb-4">1. Introduction</h2>
             <p className="mb-4">
-              Welcome to ChemicalsSite ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
+              Welcome to {SITE_NAME} (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
             </p>
             <p>
-              By accessing or using ChemicalsSite, you agree to the terms of this Privacy Policy. If you do not agree with our policies and practices, please do not use our services.
+              By accessing or using {SITE_NAME}, you agree to the terms of this Privacy Policy. If you do not agree with our policies and practices, please do not use our services.
             </p>
           </section>
 
@@ -84,7 +85,7 @@ export default function PrivacyPolicyPage() {
               <li><strong>Shipping Partners:</strong> Courier services for order delivery</li>
               <li><strong>Email Services:</strong> Postmark for transactional emails</li>
               <li><strong>Analytics:</strong> Google Analytics for website analytics (anonymized data)</li>
-              <li><strong>Customer Support:</strong> LiveChat for customer service</li>
+              <li><strong>Customer Support:</strong> Live chat tools for customer service</li>
             </ul>
 
             <h3 className="text-xl font-semibold text-amber-dark mb-3">4.2 Legal Requirements</h3>
@@ -167,9 +168,13 @@ export default function PrivacyPolicyPage() {
             </ul>
 
             <p className="mt-4">
-              To exercise your rights, please contact us at{' '}
-              <a href="mailto:info@chemicalssite.com" className="text-amber-dark hover:text-ink link-underline">
-                info@chemicalssite.com
+              To exercise your rights, please contact us on{' '}
+              <a href={SITE_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-amber-dark hover:text-ink link-underline">
+                WhatsApp
+              </a>
+              {' '}or{' '}
+              <a href={SITE_TELEGRAM} target="_blank" rel="noopener noreferrer" className="text-amber-dark hover:text-ink link-underline">
+                Telegram
               </a>
             </p>
           </section>
@@ -228,7 +233,8 @@ export default function PrivacyPolicyPage() {
               If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us:
             </p>
             <div className="bg-bone border border-ink/10 rounded-editorial p-6">
-              <p className="mb-2"><strong className="text-ink">Email:</strong> <a href="mailto:info@chemicalssite.com" className="text-amber-dark hover:text-ink link-underline">info@chemicalssite.com</a></p>
+              <p className="mb-2"><strong className="text-ink">WhatsApp:</strong> <a href={SITE_WHATSAPP} target="_blank" rel="noopener noreferrer" className="text-amber-dark hover:text-ink link-underline">Chat with us</a></p>
+              <p className="mb-2"><strong className="text-ink">Telegram:</strong> <a href={SITE_TELEGRAM} target="_blank" rel="noopener noreferrer" className="text-amber-dark hover:text-ink link-underline">Message us</a></p>
               <p><strong className="text-ink">Response Time:</strong> We aim to respond within 48 hours</p>
             </div>
           </section>
@@ -237,7 +243,7 @@ export default function PrivacyPolicyPage() {
           <section className="bg-ink text-bone-light rounded-editorial p-6">
             <h2 className="text-2xl font-semibold text-bone-light mb-4">Your Consent</h2>
             <p className="text-bone-deep">
-              By using ChemicalsSite, you consent to our Privacy Policy and agree to its terms. If you do not agree with this policy, please discontinue use of our services immediately.
+              By using {SITE_NAME}, you consent to our Privacy Policy and agree to its terms. If you do not agree with this policy, please discontinue use of our services immediately.
             </p>
           </section>
         </div>

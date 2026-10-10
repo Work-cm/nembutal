@@ -60,11 +60,11 @@ export default function ProductDetailPage() {
   const calculateEuroPrice = (grams) => {
     // Fixed prices for each gram option
     const pricingTiers = {
-      25: 400,
-      50: 550,
-      100: 700,
-      500: 1200,
-      1000: 2100,
+      25: 200,
+      50: 300,
+      100: 450,
+      500: 800,
+      1000: 1400,
     };
     
     // Return the price for the selected gram amount

@@ -6,8 +6,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useCart } from '@/components/cart/CartProvider';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSearch, FiShoppingBag, FiUser, FiX, FiChevronDown } from 'react-icons/fi';
+import { FiSearch, FiShoppingBag, FiUser, FiX, FiChevronDown, FiTruck } from 'react-icons/fi';
 import { PRODUCT_CATEGORIES, categoryHref } from '@/lib/constants/categories';
+import { SITE_NAME, SITE_WORDMARK, SITE_TAGLINE } from '@/lib/constants/site';
+import LogoMark from './LogoMark';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -18,15 +20,14 @@ const SHOP_LINKS = [
 
 const PRIMARY_LINKS = [
   { label: 'Home', href: '/' },
+  { label: 'About us', href: '/about' },
   { label: 'Shop', href: '/products', children: SHOP_LINKS },
-  { label: 'About', href: '/about' },
   { label: 'FAQ', href: '/faq' },
 ];
 
-const TICKER = [
-  'Lab-verified purity on every batch',
-  'Discreet worldwide delivery',
-  'Anabolic steroids, psychedelics and research chemicals',
+const UTILITY_LINKS = [
+  { label: 'Shipping Policy', href: '/shipping' },
+  { label: 'FAQs', href: '/faq' },
 ];
 
 export default function Navbar() {
@@ -73,6 +74,12 @@ export default function Navbar() {
   }, [menuOpen]);
 
   const cartCount = cart ? cart.reduce((n, item) => n + item.quantity, 0) : 0;
+  const cartTotal = cart
+    ? cart.reduce((sum, item) => {
+        const price = Number(item.price ?? item.variant?.price ?? item.product?.price ?? 0);
+        return sum + price * item.quantity;
+      }, 0)
+    : 0;
 
   const submitSearch = (e) => {
     e.preventDefault();
@@ -90,21 +97,24 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Announcement ticker */}
-      <div className="relative z-[60] overflow-hidden bg-ink text-bone">
-        <div className="flex w-[200%] animate-marquee whitespace-nowrap py-2">
-          {[0, 1].map((dup) => (
-            <div key={dup} className="flex w-1/2 items-center justify-around">
-              {TICKER.map((item) => (
-                <span
-                  key={`${dup}-${item}`}
-                  className="px-8 text-[10px] font-medium uppercase tracking-editorial text-bone/80"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          ))}
+      {/* Utility bar */}
+      <div className="relative z-[60] bg-ink text-bone">
+        <div className="container-editorial flex items-center justify-between gap-6 py-2">
+          <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-editorial text-bone/90">
+            <FiTruck size={13} className="text-amber-light" aria-hidden="true" />
+            Free delivery on all orders over $599
+          </p>
+          <nav className="hidden items-center gap-6 md:flex" aria-label="Utility">
+            {UTILITY_LINKS.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-[10px] font-medium uppercase tracking-editorial text-bone/60 transition-colors hover:text-bone"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </div>
 
@@ -121,8 +131,40 @@ export default function Navbar() {
               scrolled ? 'py-4' : 'py-6'
             }`}
           >
-            {/* Left: desktop nav / mobile menu trigger */}
-            <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
+            {/* Left: wordmark / mobile menu trigger */}
+            <Link
+              href="/"
+              className="group hidden justify-self-start lg:block"
+              aria-label={`${SITE_NAME} home`}
+            >
+              <span className="flex items-center gap-3">
+                <LogoMark size={30} />
+                <span className="block font-serif text-[22px] leading-none tracking-tight text-ink md:text-[26px]">
+                  {SITE_WORDMARK.primary}
+                  <span className="italic text-amber-dark">{SITE_WORDMARK.accent}</span>
+                </span>
+              </span>
+              <span className="mt-1.5 block pl-[42px] text-[9px] font-medium uppercase tracking-editorial text-ink-faint transition-colors duration-500 group-hover:text-ink-muted">
+                {SITE_TAGLINE}
+              </span>
+            </Link>
+
+            <Link
+              href="/"
+              className="group justify-self-start lg:hidden"
+              aria-label={`${SITE_NAME} home`}
+            >
+              <span className="flex items-center gap-2.5">
+                <LogoMark size={26} />
+                <span className="block font-serif text-[22px] leading-none tracking-tight text-ink">
+                  {SITE_WORDMARK.primary}
+                  <span className="italic text-amber-dark">{SITE_WORDMARK.accent}</span>
+                </span>
+              </span>
+            </Link>
+
+            {/* Center: desktop nav */}
+            <nav className="hidden items-center justify-center gap-8 lg:flex" aria-label="Primary">
               {PRIMARY_LINKS.map((link) =>
                 link.children ? (
                   <div
@@ -194,35 +236,19 @@ export default function Navbar() {
               )}
             </nav>
 
-            <button
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              className="flex flex-col gap-[5px] py-2 lg:hidden"
-              aria-label="Open menu"
-              aria-expanded={menuOpen}
-            >
-              <span className="block h-px w-6 bg-ink" />
-              <span className="block h-px w-6 bg-ink" />
-              <span className="block h-px w-4 bg-ink" />
-            </button>
-
-            {/* Center: wordmark */}
-            <Link
-              href="/"
-              className="group justify-self-center text-center"
-              aria-label="ChemicalsSite home"
-            >
-              <span className="block font-serif text-[22px] leading-none tracking-tight text-ink md:text-[26px]">
-                Chemicals
-                <span className="italic text-amber-dark">Site</span>
-              </span>
-              <span className="mt-1.5 block text-[9px] font-medium uppercase tracking-editorial text-ink-faint transition-colors duration-500 group-hover:text-ink-muted">
-                Research Compounds
-              </span>
-            </Link>
-
             {/* Right: actions */}
             <div className="flex items-center justify-end gap-5 md:gap-7">
+              <button
+                type="button"
+                onClick={() => setMenuOpen(true)}
+                className="flex flex-col gap-[5px] py-2 lg:hidden"
+                aria-label="Open menu"
+                aria-expanded={menuOpen}
+              >
+                <span className="block h-px w-6 bg-ink" />
+                <span className="block h-px w-6 bg-ink" />
+                <span className="block h-px w-4 bg-ink" />
+              </button>
               <button
                 type="button"
                 onClick={() => setSearchOpen((v) => !v)}
@@ -286,33 +312,31 @@ export default function Navbar() {
                       )}
                     </AnimatePresence>
                   </>
-                ) : (
-                  <Link
-                    href="/admin/login"
-                    className="link-underline text-[12px] font-medium uppercase tracking-editorial text-ink-muted transition-colors duration-300 hover:text-ink"
-                  >
-                    Login
-                  </Link>
-                )}
+                ) : null}
               </div>
 
               <Link
                 href="/cart"
-                className="cart-icon relative text-ink-muted transition-colors duration-300 hover:text-ink"
+                className="cart-icon relative flex items-center gap-2 text-ink-muted transition-colors duration-300 hover:text-ink"
                 aria-label={`Cart with ${cartCount} items`}
               >
-                <FiShoppingBag size={18} aria-hidden="true" />
-                {mounted && cartCount > 0 && (
-                  <motion.span
-                    key={cartCount}
-                    initial={{ scale: 0.6, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.4, ease: EASE }}
-                    className="absolute -right-2.5 -top-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-amber-dark px-1 text-[10px] font-medium text-bone-light"
-                  >
-                    {cartCount}
-                  </motion.span>
-                )}
+                <span className="relative">
+                  <FiShoppingBag size={18} aria-hidden="true" />
+                  {mounted && cartCount > 0 && (
+                    <motion.span
+                      key={cartCount}
+                      initial={{ scale: 0.6, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.4, ease: EASE }}
+                      className="absolute -right-2.5 -top-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-amber-dark px-1 text-[10px] font-medium text-bone-light"
+                    >
+                      {cartCount}
+                    </motion.span>
+                  )}
+                </span>
+                <span className="hidden text-[12px] font-medium tracking-wide md:inline">
+                  €{cartTotal.toFixed(2)}
+                </span>
               </Link>
             </div>
           </div>
@@ -330,7 +354,7 @@ export default function Navbar() {
             >
               <form onSubmit={submitSearch} className="container-editorial py-8" role="search">
                 <label htmlFor="site-search" className="eyebrow mb-3 block">
-                  Search the catalogue
+                  Search products
                 </label>
                 <div className="flex items-center gap-4 border-b border-ink/25 pb-3 focus-within:border-ink">
                   <input
@@ -339,7 +363,7 @@ export default function Navbar() {
                     type="search"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder="e.g. testosterone enanthate, 1P-LSD, 3-MMC"
+                    placeholder="e.g. codeine, Adderall, Foundayo, Nembutal"
                     className="w-full border-0 bg-transparent p-0 font-serif text-2xl text-ink placeholder:text-ink-faint focus:ring-0 md:text-3xl"
                   />
                   <button
@@ -368,8 +392,12 @@ export default function Navbar() {
             >
               <div className="flex h-full flex-col">
                 <div className="container-editorial flex items-center justify-between py-6">
-                  <span className="font-serif text-[22px] text-ink">
-                    Chemicals<span className="italic text-amber-dark">Site</span>
+                  <span className="flex items-center gap-2.5 font-serif text-[22px] text-ink">
+                    <LogoMark size={26} />
+                    <span>
+                      {SITE_WORDMARK.primary}
+                      <span className="italic text-amber-dark">{SITE_WORDMARK.accent}</span>
+                    </span>
                   </span>
                   <button
                     type="button"
@@ -467,11 +495,7 @@ export default function Navbar() {
                             Log out
                           </button>
                         </>
-                      ) : (
-                        <Link href="/admin/login" className="text-[13px] uppercase tracking-editorial text-ink-muted">
-                          Login
-                        </Link>
-                      )}
+                      ) : null}
                     </motion.div>
                   </nav>
                 </div>
